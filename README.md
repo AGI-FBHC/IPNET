@@ -9,7 +9,7 @@ HMBVIP: Hierarchical Multi-Bio-View Drug-Target Interaction Intelligent Predicti
 <img src="https://img.shields.io/badge/Release-0.1-blue" />
 </p>
 <p align="center">
-<img src="./doc/png/fig.structure.png" width=80%/> <br>
+<img src="./doc/png/fig.structure.png" width=100%/> <br>
 <b>Figure 1.</b> Structure of HMBVIP. The model comprises two core modules: 1) Data Initialization Module (DIM) processes drug and protein sequences, 2) Hierarchical Multi-Bio-View (HMBV) extracts drug-target features through multiple biological view, The HMBV module consists of three components: Drug-Target Sequence Neural Networks (DTSNN), Drug-Target High-Order Graph Attention (DTHOGAT), and Fusion Decision Module (FDM). 
 </p>
 
