@@ -77,4 +77,42 @@ bindingdb = DTI(name = 'BindingDB_Kd')
 
 ## Train
 
+``` python
+check_dir(base_path+"output/csv/")
+check_dir(base_path+"output/log/")
+check_dir(base_path+"output/pt/")
+check_dir(base_path+"output/board/")
+dataset_name = name
+log_file = logger.add(f"{base_path}output/log/IPNet-{dataset_name}-{str(datetime.date.today())}.log")
+df_split = load(name = dataset_name)
+model = ipnet_train(df_split, dataset_name=dataset_name)
+logger.remove(log_file)
+```
+output:
+``` shell
+IPNet-DAVIS.pt  IPNet-Graph-BindingDB_Kd.pt  IPNet-Graph-DAVIS.pt  IPNet-KIBA.pt  IPNet-Seq-DAVIS.pt
+```
+
 ## Test
+``` python
+check_dir(base_path+"output/csv/")
+check_dir(base_path+"output/log/")
+check_dir(base_path+"output/pt/")
+check_dir(base_path+"output/board/")
+dataset_name = name
+log_file = logger.add(f"{base_path}output/log/IPNet-{dataset_name}-{str(datetime.date.today())}.log")
+df_split = load(name = dataset_name)
+ipnet_test(df_split, dataset_name=dataset_name)
+logger.remove(log_file)
+```
+output:
+
+``` shell
+drwxrwxr-x 2 yang yang     4096 Sep 12  2024 ./
+drwxrwxr-x 6 yang yang     4096 Aug 30  2024 ../
+-rw-rw-r-- 1 yang yang      186 Aug 29  2024 IPNet-DAVIS_Metrics_2024-08-29_12_48_23.csv
+-rw-rw-r-- 1 yang yang      187 Aug 29  2024 IPNet-DAVIS_Metrics_2024-08-29_12_55_33.csv
+-rw-rw-r-- 1 yang yang      190 Aug 30  2024 IPNet-DAVIS_Metrics_2024-08-30_02_45_12.csv
+-rw-rw-r-- 1 yang yang      102 Aug 31  2024 IPNet-DAVIS_Metrics_2024-08-31_10_02_46.csv
+-rw-rw-r-- 1 yang yang       88 Sep  2  2024 IPNet-KIBA_Metrics_2024-09-02_03_21_11.csv
+```
