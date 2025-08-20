@@ -239,7 +239,7 @@ def seq_train(df_split, dataset_name="DAVIS", epoch = 20, batch_size=8,
     MSE, CI, MAE, R2 = test(seq_net, test_data, dlen_limit, tlen_limit, batch_size,device)
     metrics.append(["test",MSE, CI, MAE, R2])
     save_metrics(metrics, f"IPNet-Seq-{dataset_name}")
-    save_model(model, f"IPNet-Seq-{dataset_name}")
+    save_model(seq_net, f"IPNet-Seq-{dataset_name}")
     return seq_net
         
 @torch.no_grad()

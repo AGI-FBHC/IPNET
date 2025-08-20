@@ -91,11 +91,12 @@ def test(model, test_data):
     return MSE, CI, MAE, R2
 
 
-def ipnet_train(df_split, dataset_name="DAVIS", epoch=2, batch_size=8):
+def ipnet_train(df_split, dataset_name="DAVIS", epoch=20, batch_size=8):
     
     ## Setting and Data Preprocessing
     setup_seed(10)
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    # device = torch.device('cpu')
     df_split = load(name = dataset_name)
     train_data = df_split['train']
     valid_data = df_split['valid']
@@ -143,9 +144,45 @@ def ipnet_train(df_split, dataset_name="DAVIS", epoch=2, batch_size=8):
     MSE, CI, MAE, R2 = test(IPNet, test_data)
     metrics.append(["test", MSE, CI, MAE, R2])
     save_metrics(metrics, f"IPNet-{dataset_name}")
-    save_model(model, f"IPNet-{dataset_name}")
+    save_model(IPNet, f"IPNet-{dataset_name}")
     return IPNet
+
+def ipnet_test(df_split, dataset_name="DAVIS", batch_size=8):
+    ## Setting and Data Preprocessing
+    setup_seed(10)
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    df_split = load(name = dataset_name)
+    train_data = df_split['train']
+    valid_data = df_split['valid']
+    test_data = df_split['test']
+    raw_data =  df_split['raw']
+    x, idx_dict = df_nodes(raw_data) # nodes info
+    pos_edge_index = df_encode_edges(raw_data,idx_dict)
+    dti_dataset = MyDataset(train_data)
+    dti_data = DataLoader(dti_dataset,batch_size=batch_size, shuffle=True, drop_last=True)
     
+    ## Graph Network Train
+    if check_model(f"IPNet-Graph-{dataset_name}"):
+        GraphNet = GCN_Net(x.size(1)).to(device)
+        load_model(GraphNet, f"IPNet-Graph-{dataset_name}")
+    else:
+        GraphNet = graph_train(df_split, dataset_name=dataset_name)
+
+    ## Sequence Network Train
+    if check_model(f"IPNet-Seq-{dataset_name}"):
+        SeqNet = DTISeqPredictNet().to(device)
+        load_model(SeqNet, f"IPNet-Seq-{dataset_name}")
+    else:
+        SeqNet = seq_train(df_split, dataset_name=dataset_name)
+    
+    ## Intelligent Prediction Network Train
+    IPNet = IntelliPredictNet(x, idx_dict, pos_edge_index, GraphNet, SeqNet)
+    IPNet.train()
+    metrics = []
+    MSE, CI, MAE, R2 = test(IPNet, test_data)
+    metrics.append(["test", MSE, CI, MAE, R2])
+    save_metrics(metrics, f"IPNet-{dataset_name}")
+
 if __name__ == '__main__':
     dataset_name = "DAVIS"
     log_file = logger.add(f"{base_path}output/log/IPNet-{dataset_name}-{str(datetime.date.today())}.log")
