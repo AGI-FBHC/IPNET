@@ -124,3 +124,19 @@ drwxrwxr-x 6 yang yang     4096 Aug 30  2024 ../
 -rw-rw-r-- 1 yang yang      102 Aug 31  2024 IPNet-DAVIS_Metrics_2024-08-31_10_02_46.csv
 -rw-rw-r-- 1 yang yang       88 Sep  2  2024 IPNet-KIBA_Metrics_2024-09-02_03_21_11.csv
 ```
+
+**Cite Our Paper**
+```bibtex
+@article{yangMINDGDrugTarget2024a,
+  title = {{{MINDG}}: A Drug--Target Interaction Prediction Method Based on an Integrated Learning Algorithm},
+  shorttitle = {Mindg},
+  author = {Yang, Hailong and Chen, Yue and Zuo, Yun and Deng, Zhaohong and Pan, Xiaoyong and Shen, Hong-Bin and Choi, Kup-Sze and Yu, Dong-Jun},
+  editor = {Valencia, Alfonso},
+  year = 2024,
+  month = mar,
+  journal = {Bioinformatics},
+  volume = {40},
+  number = {4},
+  pages = {btae147}
+}
+```
