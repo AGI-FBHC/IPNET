@@ -121,16 +121,16 @@ drwxrwxr-x 6 yang yang     4096 Aug 30  2024 ../
 
 ```bibtex
 @article{yangMINDGDrugTarget2024a,
-  title = {{{MINDG}}: A Drug--Target Interaction Prediction Method Based on an Integrated Learning Algorithm},
-  shorttitle = {Mindg},
-  author = {Yang, Hailong and Chen, Yue and Zuo, Yun and Deng, Zhaohong and Pan, Xiaoyong and Shen, Hong-Bin and Choi, Kup-Sze and Yu, Dong-Jun},
-  editor = {Valencia, Alfonso},
-  year = 2024,
-  month = mar,
-  journal = {Bioinformatics},
-  volume = {40},
-  number = {4},
-  pages = {btae147}
+@article{yangHMBVIPNovelHierarchical2025,
+  title = {{{HMBVIP}}: A Novel Hierarchical Multi-Bio-View Intelligent Prediction Networks for Drug--Target Interaction Prediction},
+  shorttitle = {Hmbvip},
+  author = {Yang, Hailong and Ning, Qiao and Song, Ze and Chen, Yue and Wang, Guanjin and Deng, Zhaohong and Zuo, Yun and Ge, Yuxi and Hu, Shudong},
+  year = 2025,
+  month = aug,
+  journal = {Journal of Chemical Information and Modeling},
+  volume = {65},
+  number = {16},
+  pages = {8871--8888}
 }
 
 ```
